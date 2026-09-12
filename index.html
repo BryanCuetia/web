@@ -202,8 +202,8 @@
   /* ---------- RESPONSIVE MÓVIL ---------- */
   @media (max-width: 640px){
     .hero{ height: 115vh; min-height: 115vh; overflow: visible; }
-    /* Fondo en móvil modificado a absolute para que se desplace al deslizar la pantalla */
-    .hero-img { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%) scale(0.45); object-fit: cover; z-index: 0; }
+    /* Fondo en móvil con el top bajado un poco más (56%) y scale(1) */
+    .hero-img { position: absolute; top: 56%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%) scale(1); object-fit: cover; z-index: 0; }
     .hero-content{ position: relative; height: 115vh; min-height: 115vh; justify-content: space-between; gap: 0; padding: 2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.5rem; align-items: center; text-align: center; }
     
     .name{ 

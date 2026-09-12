@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bryan Cuetia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --bg-soft: #F4F1EA;
+    --ink: #15161B;
+    --ink-dim: #6E6D72;
+    --line: rgba(21,22,27,0.14);
+    --accent: #000000;
+    --accent-dim: #4A4A4E;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ 
+    scroll-behavior:smooth;
+    overflow-x: hidden;
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- HERO (ESCRITORIO & GENERAL) ---------- */
+  .hero{
+    position:relative;
+    width:100vw;
+    height: 120vh;
+    background-image: url('Avion.jpg');
+    background-size: cover;
+    background-position: center 82%;
+    background-repeat: no-repeat;
+    will-change: background-position;
+  }
+
+  /* Contenido fijo en pantalla durante el scroll en escritorio */
+  .hero-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:100vh;
+    width:100%;
+    padding: 2rem 3rem 1.2rem 2rem;
+  }
+
+  /* Título Neue Haas Grotesk Black - Escritorio */
+  .name{
+    font-family: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.92;
+    font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+    letter-spacing: 0.06em;
+    color: #000000;
+    margin-top: -0.2rem;
+    margin-left: 0;
+    display: inline-block;
+  }
+
+  .name a{
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+  }
+
+  .name a:hover{
+    opacity: 0.8;
+  }
+
+  .name span{
+    display:block;
+  }
+
+  /* Estructura Inferior en Escritorio */
+  .hero-bottom{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+  }
+
+  .socials-mini{
+    display:flex;
+    gap:0.8rem;
+    align-items:center;
+    z-index: 2;
+    margin-left: 0;
+  }
+
+  .socials-mini a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    color:#000000;
+    opacity:0.8;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+
+  .socials-mini a:hover{
+    opacity:1;
+    transform:scale(1.1);
+  }
+
+  /* Estilo original de los iconos en escritorio */
+  .socials-mini svg{ 
+    width: 12.5px; 
+    height: 12.5px; 
+  }
+
+  /* Copyright original en escritorio */
+  .copyright{
+    position:absolute;
+    right:0;
+    bottom:0;
+    font-family:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size:0.5rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    color:#000000;
+    opacity:0.75;
+    text-align:right;
+    white-space:nowrap;
+    z-index: 1;
+  }
+
+  /* ---------- RESPONSIVE MÓVIL ---------- */
+  @media (max-width: 640px){
+    .hero{ 
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+      background-position: center 30%;
+      background-size: cover;
+    }
+
+    .hero-content{
+      position: relative;
+      height: auto;
+      min-height: auto;
+      justify-content: flex-start;
+      gap: 0;
+      padding: 2rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)) 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+    
+    /* Título principal con tamaño de fuente aumentado en móvil */
+    .name{ 
+      font-family: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 9vw, 3.2rem); 
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-left: 0;
+      position: relative;
+      top: 0;
+    }
+    
+    .hero-bottom{ 
+      margin-top: 120vh; 
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center;
+      gap: 0.8rem; 
+      width: 100%;
+    }
+
+    .socials-mini{ 
+      gap: 1.1rem; 
+      justify-content: center;
+      margin-left: 0;
+    }
+
+    /* Iconos en color negro aplicados únicamente para móvil */
+    .socials-mini a {
+      color: #000000;
+    }
+
+    .socials-mini svg{ 
+      width: 17px; 
+      height: 17px; 
+      fill: none;
+      stroke: #000000;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* YouTube en móvil */
+    .socials-mini svg polygon {
+      fill: #000000;
+    }
+
+    /* Copyright en color negro y con tamaño de fuente reducido únicamente para móvil */
+    .copyright{
+      position: static;
+      transform: none;
+      font-family: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 0.45rem; /* Tamaño de fuente reducido solo en móvil */
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-align: center;
+      margin-bottom: 0;
+      color: #000000;
+    }
+  }
+</style>
+</head>
+<body id="top">
+
+  <header class="hero" id="heroSection">
+
+    <div class="hero-content">
+      <h1 class="name">
+        <a href="" onclick="window.location.reload(); return false;" aria-label="Recargar página y volver al inicio">
+          <span>BRYAN CUETIA</span>
+        </a>
+      </h1>
+
+      <div class="hero-bottom">
+        <div class="socials-mini" aria-label="Redes sociales">
+          <!-- Instagram -->
+          <a href="https://instagram.com/bryancuetia" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://tiktok.com/@bryancuetia" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8c-.9-.6-1.5-1.6-1.6-2.8h-3v12.6a2.6 2.6 0 1 1-2.1-2.6v-3a5.6 5.6 0 1 0 5.1 5.6V9.7c1 .7 2.2 1.1 3.6 1.1V7.8c-.7 0-1.4-.2-2-.6z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://facebook.com/bryancuetia" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- X -->
+          <a href="https://x.com/bryancuetia" aria-label="X" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://youtube.com/@bryancuetia" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#FFFFFF"/></svg>
+          </a>
+        </div>
+        <div class="copyright">
+          © 2026 BRYAN CUETIA
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    const heroElem = document.getElementById('heroSection');
+
+    window.addEventListener('scroll', () => {
+      let scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (window.innerWidth <= 640) {
+        // En móvil
+        heroElem.style.backgroundPositionY = `calc(30% + ${scrollPos * 0.01}px)`;
+      } else {
+        // En computador
+        heroElem.style.backgroundPositionY = `calc(82% + ${scrollPos * 0.005}px)`;
+      }
+    });
+  </script>
+
+</body>
+</html>

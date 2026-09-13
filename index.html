@@ -201,10 +201,13 @@
 
   /* ---------- RESPONSIVE MÓVIL ---------- */
   @media (max-width: 640px){
+    /* Altura ajustada a 115vh para que el scroll termine exacto al desaparecer el título */
     .hero{ height: 115vh; min-height: 115vh; overflow: visible; }
-    /* Fondo en móvil con el top bajado un poco más (56%) y scale(1) */
+    
+    /* Fondo en móvil con el top en 56% y scale(1) */
     .hero-img { position: absolute; top: 56%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%) scale(1); object-fit: cover; z-index: 0; }
-    .hero-content{ position: relative; height: 115vh; min-height: 115vh; justify-content: space-between; gap: 0; padding: 2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.5rem; align-items: center; text-align: center; }
+    
+    .hero-content{ position: relative; height: 100vh; min-height: 100vh; justify-content: space-between; gap: 0; padding: 2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.5rem; align-items: center; text-align: center; }
     
     .name{ 
       font-family: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -322,7 +325,10 @@
 
     window.addEventListener('wheel', (e) => {
       e.preventDefault();
-      targetScrollY += e.deltaY * 0.25;
+      const isMobile = window.innerWidth <= 640;
+      const multiplier = isMobile ? 0.1 : 0.25;
+      
+      targetScrollY += e.deltaY * multiplier;
       
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       targetScrollY = Math.max(0, Math.min(targetScrollY, maxScroll));

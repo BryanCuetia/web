@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRYAN CUETIA | PAGINA WEB</title>
-<!-- Descripción para los motores de búsqueda de Google -->
-<meta name="description" content="Sitio web oficial de Bryan Cuetia">
-
-<!-- Favicon con la letra B optimizada, más grande y destacada -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%2315161B%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22'Space Grotesk', sans-serif%22 font-weight=%22700%22 font-size=%2221%22 fill=%22%23F5F2EB%22>B</text></svg>">
+<title>Bryan Cuetia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -46,21 +41,11 @@
     width:100vw;
     height: 110vh;
     overflow: hidden;
-  }
-
-  /* Fondo en escritorio con scale(1) para cubrir toda la pantalla */
-  .hero-img {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%) scale(1);
-    object-fit: cover;
-    z-index: 0;
+    /* Fondo actualizado con la imagen proporcionada */
+    background-image: url('Bryan.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .hero-content{
@@ -201,18 +186,14 @@
 
   /* ---------- RESPONSIVE MÓVIL ---------- */
   @media (max-width: 640px){
-    /* Bloqueo total del rebote elástico (rubber-band) en móviles */
-    html, body {
-      overscroll-behavior-y: none;
+    .hero{ 
+      height: 115vh; 
+      min-height: 115vh; 
+      overflow: visible;
+      background-size: cover;
+      background-position: center;
     }
-
-    /* Altura ajustada para permitir deslizar y bloquearse justo al ocultar el nombre */
-    .hero{ height: 125vh; min-height: 125vh; overflow: visible; }
-    
-    /* Fondo en móvil con el top en 56% y scale(1) */
-    .hero-img { position: absolute; top: 56%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%) scale(1); object-fit: cover; z-index: 0; }
-    
-    .hero-content{ position: relative; height: 100vh; min-height: 100vh; justify-content: space-between; gap: 0; padding: 2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.5rem; align-items: center; text-align: center; }
+    .hero-content{ position: relative; height: 115vh; min-height: 115vh; justify-content: space-between; gap: 0; padding: 2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.5rem; align-items: center; text-align: center; }
     
     .name{ 
       font-family: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -273,7 +254,7 @@
 <body id="top">
 
   <header class="hero" id="heroSection">
-    <img class="hero-img" src="Bryan.jpg" alt="Fondo de pantalla Bryan Cuetia">
+    <!-- Se ha reemplazado el elemento video por la imagen de fondo Bryan.jpg -->
 
     <div class="hero-content">
       <h1 class="name">
@@ -328,30 +309,9 @@
       }
     }
 
-    let touchStartY = 0;
-    window.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      const isMobile = window.innerWidth <= 640;
-      if (!isMobile) return;
-
-      const currentY = e.touches[0].clientY;
-      const deltaY = touchStartY - currentY; 
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-      if (deltaY > 0 && (window.scrollY >= maxScroll - 2)) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
     window.addEventListener('wheel', (e) => {
       e.preventDefault();
-      const isMobile = window.innerWidth <= 640;
-      const multiplier = isMobile ? 0.1 : 0.25;
-      
-      targetScrollY += e.deltaY * multiplier;
+      targetScrollY += e.deltaY * 0.25;
       
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       targetScrollY = Math.max(0, Math.min(targetScrollY, maxScroll));

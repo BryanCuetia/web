@@ -201,8 +201,13 @@
 
   /* ---------- RESPONSIVE MÓVIL ---------- */
   @media (max-width: 640px){
-    /* Altura ajustada a 135vh para el tramo exacto donde aparecen redes y copyright */
-    .hero{ height: 135vh; min-height: 135vh; overflow: visible; }
+    /* Bloqueo total del rebote elástico (rubber-band) en móviles */
+    html, body {
+      overscroll-behavior-y: none;
+    }
+
+    /* Altura ajustada para permitir deslizar y bloquearse justo al ocultar el nombre */
+    .hero{ height: 125vh; min-height: 125vh; overflow: visible; }
     
     /* Fondo en móvil con el top en 56% y scale(1) */
     .hero-img { position: absolute; top: 56%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%) scale(1); object-fit: cover; z-index: 0; }
@@ -323,7 +328,6 @@
       }
     }
 
-    // Control táctil específico para móviles para bloquear el scroll al llegar al final
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
       touchStartY = e.touches[0].clientY;
@@ -334,12 +338,11 @@
       if (!isMobile) return;
 
       const currentY = e.touches[0].clientY;
-      const deltaY = touchStartY - currentY; // Positivo si desliza hacia abajo (baja), Negativo si sube
+      const deltaY = touchStartY - currentY; 
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-      // Si está intentando bajar (deltaY > 0) y ya llegó al límite inferior (o está muy cerca)
-      if (deltaY > 0 && window.scrollY >= maxScroll - 2) {
-        e.preventDefault(); // Bloquea totalmente el movimiento del dedo para que no siga bajando
+      if (deltaY > 0 && (window.scrollY >= maxScroll - 2)) {
+        e.preventDefault();
       }
     }, { passive: false });
 

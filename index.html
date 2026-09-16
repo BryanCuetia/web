@@ -255,6 +255,103 @@
     to{ width:100%; }
   }
 
+  /* ---------- PANTALLA DE BIENVENIDA (NUEVA, insertada entre la carga y la página principal) ---------- */
+  body.welcome-active{
+    overflow:hidden;
+    height:100%;
+  }
+
+  #welcomeScreen{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:#000000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9998;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:none;
+  }
+
+  #welcomeScreen.welcome-show{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  #welcomeScreen.welcome-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition: opacity 0.8s cubic-bezier(0.65,0,0.35,1), visibility 0.8s;
+  }
+
+  .welcome-name-wrap{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.1rem; /* idéntico al gap de .preloader-content, para replicar su misma posición */
+  }
+
+  .welcome-spacer{
+    width:0;
+    height:1px; /* replica la altura de .preloader-bar para que el cálculo de centrado sea idéntico */
+  }
+
+  /* Mismo tamaño, tipografía y posición exacta que .preloader-text; sin transición ni animación alguna */
+  .welcome-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:#FFFFFF;
+    font-size:clamp(1.1rem, 2.6vw, 1.75rem);
+    text-align:center;
+    white-space:nowrap;
+  }
+
+  .welcome-btn{
+    position:absolute;
+    top:calc(50% + clamp(2.3rem, 4vw, 3.1rem));
+    left:50%;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:#FFFFFF;
+    background:transparent;
+    border:1px solid #FFFFFF;
+    border-radius:10px;
+    padding:0.85em 2.4em;
+    font-size:clamp(0.62rem, 1.05vw, 0.72rem);
+    cursor:pointer;
+    opacity:0;
+    transform:translate(-50%,10px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1) 1.05s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 1.05s, background-color 0.3s ease, color 0.3s ease;
+  }
+
+  #welcomeScreen.welcome-show .welcome-btn{
+    opacity:1;
+    transform:translate(-50%,0);
+  }
+
+  .welcome-btn:hover,
+  .welcome-btn:focus-visible{
+    background:#FFFFFF;
+    color:#000000;
+  }
+
+  @media (max-width:640px){
+    .welcome-btn{ padding:0.78em 2rem; font-size:clamp(0.58rem, 2.4vw, 0.68rem); }
+  }
 
   /* ---------- RESPONSIVE MÓVIL ---------- */
   @media (max-width: 640px){
@@ -343,6 +440,14 @@
     </div>
   </div>
 
+  <div id="welcomeScreen">
+    <div class="welcome-name-wrap">
+      <div class="welcome-name">BRYAN CUETIA</div>
+      <div class="welcome-spacer" aria-hidden="true"></div>
+    </div>
+    <button type="button" class="welcome-btn" id="welcomeStartBtn">Iniciar</button>
+  </div>
+
   <header class="hero" id="heroSection">
     <!-- Se ha reemplazado el elemento video por la imagen de fondo Bryan.jpg -->
 
@@ -388,6 +493,8 @@
       var preloader = document.getElementById('preloader');
       var preloaderText = document.querySelector('.preloader-text');
       var preloaderBar = document.querySelector('.preloader-bar');
+      var welcomeScreen = document.getElementById('welcomeScreen');
+      var welcomeStartBtn = document.getElementById('welcomeStartBtn');
       var PRELOAD_DURATION = 2200; // ms, matches preloader-bar-fill animation duration
 
       function syncBarWidth(){
@@ -403,15 +510,38 @@
         }
       });
 
+      function showWelcomeScreen(){
+        if (!welcomeScreen) return;
+        document.body.classList.add('welcome-active');
+        welcomeScreen.classList.add('welcome-show');
+      }
+
       function hidePreloader(){
         if (!preloader) return;
         preloader.classList.add('preloader-hidden');
         document.body.classList.remove('preloader-active');
+        showWelcomeScreen();
         setTimeout(function(){
           if (preloader && preloader.parentNode){
             preloader.parentNode.removeChild(preloader);
           }
         }, 700);
+      }
+
+      function goToMainSite(){
+        if (!welcomeScreen) return;
+        welcomeScreen.classList.remove('welcome-show');
+        welcomeScreen.classList.add('welcome-hidden');
+        document.body.classList.remove('welcome-active');
+        setTimeout(function(){
+          if (welcomeScreen && welcomeScreen.parentNode){
+            welcomeScreen.parentNode.removeChild(welcomeScreen);
+          }
+        }, 900);
+      }
+
+      if (welcomeStartBtn){
+        welcomeStartBtn.addEventListener('click', goToMainSite);
       }
 
       window.addEventListener('load', function(){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="preloader-active">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -193,6 +193,7 @@
   }
 
   /* ---------- PRELOADER ---------- */
+  html.preloader-active,
   body.preloader-active{
     overflow:hidden;
     height:100%;
@@ -256,6 +257,7 @@
   }
 
   /* ---------- PANTALLA DE BIENVENIDA (NUEVA, insertada entre la carga y la página principal) ---------- */
+  html.welcome-active,
   body.welcome-active{
     overflow:hidden;
     height:100%;
@@ -453,7 +455,7 @@
 
     <div class="hero-content">
       <h1 class="name">
-        <a href="" onclick="window.location.reload(); return false;" aria-label="Recargar página y volver al inicio">
+        <a href="" onclick="try{ sessionStorage.setItem('skipWelcomeScreen','1'); }catch(e){}" aria-label="Cargar nuevamente la página principal">
           <span>BRYAN CUETIA</span>
         </a>
       </h1>
@@ -510,8 +512,17 @@
         }
       });
 
+      var skipWelcomeScreen = false;
+      try {
+        if (sessionStorage.getItem('skipWelcomeScreen') === '1'){
+          skipWelcomeScreen = true;
+          sessionStorage.removeItem('skipWelcomeScreen');
+        }
+      } catch(e){}
+
       function showWelcomeScreen(){
         if (!welcomeScreen) return;
+        document.documentElement.classList.add('welcome-active');
         document.body.classList.add('welcome-active');
         welcomeScreen.classList.add('welcome-show');
       }
@@ -519,8 +530,11 @@
       function hidePreloader(){
         if (!preloader) return;
         preloader.classList.add('preloader-hidden');
+        document.documentElement.classList.remove('preloader-active');
         document.body.classList.remove('preloader-active');
-        showWelcomeScreen();
+        if (!skipWelcomeScreen){
+          showWelcomeScreen();
+        }
         setTimeout(function(){
           if (preloader && preloader.parentNode){
             preloader.parentNode.removeChild(preloader);
@@ -532,6 +546,7 @@
         if (!welcomeScreen) return;
         welcomeScreen.classList.remove('welcome-show');
         welcomeScreen.classList.add('welcome-hidden');
+        document.documentElement.classList.remove('welcome-active');
         document.body.classList.remove('welcome-active');
         setTimeout(function(){
           if (welcomeScreen && welcomeScreen.parentNode){

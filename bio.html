@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BIO - BRYAN CUETIA</title>
+<meta name="description" content="Biografía de Bryan Cuetia">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Ctext x='32' y='48' font-family='Helvetica, Arial, sans-serif' font-weight='700' font-size='42' fill='%23FFFFFF' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ background:#000000; }
+  body{
+    min-height:100vh;
+    min-height:100dvh;
+    color:#EEEDE9;
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.86) 55%, #000000 100%),
+      url('Bryan.jpg') center / cover no-repeat,
+      #000000;
+  }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid #EEEDE9; outline-offset:3px; }
+
+  .page{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:2.3rem 3rem calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Cabecera: mismo título y menú que la página principal */
+  .brand{
+    display:inline-block;
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    font-size:clamp(1.6rem, 2.95vw, 3.1rem);
+    line-height:1;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    padding-left:.08em;
+    color:#EEEDE9;
+    text-shadow:0 3px 8px rgba(0,0,0,.35);
+    text-align:center;
+    transition:opacity .2s ease;
+  }
+  .brand:hover{ opacity:.8; }
+
+  .site-nav{ margin-top:clamp(0.9rem, 1.55vw, 1.5rem); }
+  .site-nav ul{ list-style:none; display:flex; justify-content:center; align-items:center; }
+  .site-nav li{
+    display:flex; align-items:center;
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    font-size:clamp(0.8rem, 1.32vw, 1.25rem);
+    line-height:1;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#EEEDE9;
+    text-shadow:0 3px 8px rgba(0,0,0,.35);
+  }
+  .site-nav li + li::before{
+    content:"|";
+    content:"|" / "";
+    margin:0 1.05em 0 calc(1.05em - .08em);
+    font-weight:400;
+    opacity:.85;
+  }
+  .site-nav a{
+    display:inline-block;
+    padding:.35em 0 .3em;
+    color:inherit;
+    background:linear-gradient(currentColor,currentColor) left calc(100% - .12em) / 0 1px no-repeat;
+    transition:background-size .35s ease;
+  }
+  .site-nav a:hover,
+  .site-nav a:focus-visible,
+  .site-nav a[aria-current="page"]{ background-size:100% 1px; }
+
+  /* Contenido (reservado para el contenido definitivo) */
+  .content{
+    flex:1;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 0;
+  }
+  .construction{ animation:rise 1.6s cubic-bezier(0.16,1,0.3,1) .2s both; }
+  .eyebrow{
+    font-family:'Lato','Helvetica Neue',Arial,sans-serif;
+    font-size:clamp(0.75rem, 1.05vw, 0.95rem);
+    letter-spacing:.32em;
+    padding-left:.32em;
+    color:#C9C7C2;
+    margin-bottom:1.4rem;
+  }
+  .construction h1{
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    font-size:clamp(1.7rem, 4.2vw, 3.6rem);
+    line-height:1.1;
+    letter-spacing:.14em;
+    padding-left:.14em;
+    text-transform:uppercase;
+    text-shadow:0 3px 8px rgba(0,0,0,.35);
+  }
+  .rule{
+    display:block;
+    width:clamp(2.5rem, 5vw, 4rem);
+    height:1px;
+    background:#B4B3AF;
+    opacity:.7;
+    margin:1.8rem auto;
+  }
+  .note{
+    font-family:'Lato','Helvetica Neue',Arial,sans-serif;
+    font-size:clamp(0.8rem, 1.1vw, 1rem);
+    letter-spacing:.08em;
+    line-height:1.7;
+    color:#CFCDC8;
+    max-width:32ch;
+    margin:0 auto;
+  }
+
+  .foot{
+    font-family:'Lato','Helvetica Neue',Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:.09em;
+    line-height:1;
+    text-transform:uppercase;
+    color:#CFCDC8;
+    text-align:center;
+  }
+
+  .fade-in{ animation:rise 1.4s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes rise{
+    from{ opacity:0; transform:translate3d(0,18px,0); filter:blur(6px); }
+    to{ opacity:1; transform:translate3d(0,0,0); filter:blur(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .construction, .fade-in{ animation:none; }
+  }
+
+  @media (max-width:640px){
+    .page{ padding:2rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom, 0px)); }
+    .brand{ font-size:clamp(1.5rem, 8vw, 3.2rem); width:100%; }
+    .site-nav{ margin-top:.9rem; }
+    .site-nav li{ font-size:clamp(0.72rem, 3.6vw, 1rem); }
+    .construction h1{ font-size:clamp(1.5rem, 8vw, 2.2rem); letter-spacing:.1em; padding-left:.1em; }
+    .foot{ font-size:10px; }
+  }
+
+  /* Escritorio: título y menú con el mismo tamaño y ubicación que en la página principal */
+  @media (min-width:641px){
+    html{ overflow-y:scroll; }
+    .page{ padding-top:2.5rem; }
+    .brand{
+      display:block;
+      width:max-content;
+      margin:0 auto;
+    }
+    .site-nav{ margin-top:calc(clamp(0.75rem, 1.2vw, 1.2rem) - 0.2rem); }
+  }
+
+  /* ---------- BIOGRAFÍA (tamaño de texto uniforme) ---------- */
+  .content:has(.bio){ align-items:flex-start; }
+  .bio{
+    --bio-fs:clamp(1rem, 1.05vw + .35rem, 1.15rem);
+    width:100%;
+    max-width:40rem;
+    margin:clamp(2.5rem, 7vh, 4.5rem) auto clamp(2rem, 5vh, 3.5rem);
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-size:var(--bio-fs);
+  }
+  .bio-head{ text-align:center; }
+  .bio-head h1{
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-weight:600;
+    font-size:var(--bio-fs);
+    line-height:1.2;
+    letter-spacing:.34em;
+    padding-left:.34em;
+    text-transform:uppercase;
+    text-shadow:0 3px 8px rgba(0,0,0,.35);
+  }
+  .bio-head .rule{ margin:1.6rem auto 2.6rem; }
+
+  .bio-text p{
+    font-family:'Lora', Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    font-size:var(--bio-fs);
+    line-height:1.9;
+    letter-spacing:.005em;
+    color:#DEDCD7;
+    text-align:left;
+    text-shadow:0 2px 10px rgba(0,0,0,.45);
+    margin:0 0 1.75em;
+  }
+
+  /* Cierre: mismo tamaño; solo cambian el estilo (cursiva), el espaciado y la separación */
+  .bio-text p.closing{
+    font-style:italic;
+    letter-spacing:.02em;
+    color:#EEEDE9;
+    margin:3.4em 0 0;
+    text-wrap:balance;
+  }
+
+  /* Aparición progresiva suave al llegar a cada bloque */
+  .js .reveal{
+    opacity:0;
+    transform:translate3d(0,18px,0);
+    transition:opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .js .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .js .reveal{ transform:none; transition:opacity .8s ease; }
+  }
+
+  @media (max-width:640px){
+    .bio{ margin-top:2.2rem; }
+    .bio-head .rule{ margin:1.3rem auto 2rem; }
+    .bio-text p{ line-height:1.8; }
+    .bio-text p.closing{ margin-top:2.8em; }
+  }
+
+  /* Volver al inicio (final de la biografía) */
+  .bio-top-wrap{
+    display:flex;
+    justify-content:center;
+    margin-top:clamp(3rem, 8vh, 4.5rem);
+  }
+  .bio-top{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.85rem;
+    padding:.9rem 1.4rem;
+    min-height:44px;
+    background:none;
+    border:0;
+    cursor:pointer;
+    font-family:'Lato','Helvetica Neue',Arial,sans-serif;
+    font-size:clamp(0.72rem, 0.9vw, 0.85rem);
+    letter-spacing:.28em;
+    padding-left:calc(1.4rem + .28em);
+    text-transform:uppercase;
+    color:#B4B3AF;
+    text-shadow:0 2px 10px rgba(0,0,0,.45);
+    transition:color .3s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .bio-top svg{
+    width:22px;
+    height:10px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    transition:transform .4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .bio-top:hover,
+  .bio-top:focus-visible{ color:#FFFFFF; }
+  .bio-top:hover svg,
+  .bio-top:focus-visible svg{ transform:translateY(-4px); }
+  @media (max-width:640px){
+    .bio-top{ font-size:.72rem; letter-spacing:.24em; padding-left:calc(1.4rem + .24em); }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="fade-in">
+      <a class="brand" href="index.html" aria-label="Volver a la página principal" onclick="try{ sessionStorage.setItem('skipWelcomeScreen','1'); }catch(e){}">Bryan Cuetia</a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html" onclick="try{ sessionStorage.setItem('instantHome','1'); }catch(e){}">Inicio</a></li>
+          <li><a href="bio.html" aria-current="page">Bio</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <article class="bio" id="bio-content">
+        <header class="bio-head reveal">
+          <h1>Sobre mí</h1>
+          <span class="rule" aria-hidden="true"></span>
+        </header>
+
+        <div class="bio-text">
+          <p class="reveal">Soy una persona tranquila, reservada y observadora, con una curiosidad constante por aprender, explorar y descubrir. Desde niño disfruté viajar, conocer nuevos lugares, estar en la naturaleza y encontrar nuevas formas de experimentar el mundo. Con el tiempo, esa curiosidad se transformó en interés por la tecnología, las herramientas digitales, la investigación y la innovación.</p>
+
+          <p class="reveal">Disfruto aprender de manera independiente, organizar ideas, comprender cómo funcionan las cosas y encontrar soluciones. La música, los viajes, la tecnología y la innovación también forman parte de aquello que despierta mi interés y alimenta mi creatividad.</p>
+
+          <p class="reveal">Valoro la autonomía, la libertad y el aprendizaje, sin dejar de lado la estabilidad, el respeto, la responsabilidad y la honestidad. Prefiero avanzar a mi propio ritmo, observar antes de hablar y construir con intención.</p>
+
+          <p class="reveal">Hoy sigo descubriendo mi camino. Exploro mis habilidades, intereses y posibilidades con la intención de construir un futuro que tenga sentido para mí: un camino donde pueda aprender, innovar, evolucionar y aportar desde mi propia manera de ver y hacer las cosas.</p>
+
+          <p class="closing reveal">A veces, avanzar no es saber hacia dónde vas, sino entender mejor quién eres.</p>
+        </div>
+
+        <div class="bio-top-wrap reveal">
+          <button type="button" class="bio-top" id="bioTop" aria-label="Volver al inicio de la página">
+            <svg viewBox="0 0 30 14" aria-hidden="true"><path d="M1 12.5 15 1.5 29 12.5"/></svg>
+            <span>Volver al inicio</span>
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">© 2026 BRYAN CUETIA</footer>
+  </div>
+  <script>
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)){
+        for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+      for (var j = 0; j < els.length; j++) io.observe(els[j]);
+    })();
+  </script>
+  <script>
+    (function(){
+      var btn = document.getElementById('bioTop');
+      if (!btn) return;
+      btn.addEventListener('click', function(){
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>
